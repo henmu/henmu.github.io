@@ -1,9 +1,9 @@
 const cacheName = "DefaultCompany-ST20-25-0.1";
 const contentToCache = [
-    "Build/nonCompressWeb.loader.js",
-    "Build/nonCompressWeb.framework.js",
-    "Build/nonCompressWeb.data",
-    "Build/nonCompressWeb.wasm",
+    "Build/web1908.loader.js",
+    "Build/web1908.framework.js.gz",
+    "Build/web1908.data.gz",
+    "Build/web1908.wasm.gz",
     "TemplateData/style.css"
 
 ];
