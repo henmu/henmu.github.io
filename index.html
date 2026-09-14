@@ -62,17 +62,20 @@
   body[data-scene="contact"] .layer-contact{ opacity: 1; }
 
   .blob{
-    position: absolute; border-radius: 50%;
-    filter: blur(70px); mix-blend-mode: screen; opacity: 0.62;
+    position: absolute; border-radius: 22px;
+    filter: blur(60px); mix-blend-mode: screen; opacity: 0.62;
   }
   .blob-a{ width: 55vw; height: 55vw; top: -12%; left: -8%;
-    background: radial-gradient(circle, transparent 0%, var(--c1) 42%, var(--e1) 68%, transparent 100%);
+    background: var(--c1); box-shadow: inset 0 0 12vw 3vw var(--e1);
   }
   .blob-b{ width: 46vw; height: 46vw; top: 28%; right: -10%;
-    background: radial-gradient(circle, transparent 0%, var(--c2) 42%, var(--e2) 68%, transparent 100%);
+    background: var(--c2); box-shadow: inset 0 0 10vw 3vw var(--e2);
   }
   .blob-c{ width: 50vw; height: 50vw; bottom: -16%; left: 22%;
-    background: radial-gradient(circle, transparent 0%, var(--c3) 42%, var(--e3) 68%, transparent 100%);
+    background: var(--c3); box-shadow: inset 0 0 11vw 3vw var(--e3);
+  }
+  .blob-d{ width: 40vw; height: 40vw; bottom: -14%; left: -12%;
+    background: var(--c1); box-shadow: inset 0 0 9vw 3vw var(--e1);
   }
 
   .layer-home{ --c1:#3E6FE0; --e1:#8CAEF5; --c2:#E0823C; --e2:#F5B27D; --c3:#8B5FD9; --e3:#C0A3F0; }
@@ -208,16 +211,19 @@
     <div class="blob blob-a"></div>
     <div class="blob blob-b"></div>
     <div class="blob blob-c"></div>
+    <div class="blob blob-d"></div>
   </div>
   <div class="bg-layer layer-work">
     <div class="blob blob-a"></div>
     <div class="blob blob-b"></div>
     <div class="blob blob-c"></div>
+    <div class="blob blob-d"></div>
   </div>
   <div class="bg-layer layer-contact">
     <div class="blob blob-a"></div>
     <div class="blob blob-b"></div>
     <div class="blob blob-c"></div>
+    <div class="blob blob-d"></div>
   </div>
   <div class="bg-scrim"></div>
 </div>
