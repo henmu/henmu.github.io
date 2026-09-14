@@ -75,9 +75,9 @@
     background: radial-gradient(circle, transparent 0%, var(--c3) 42%, var(--e3) 68%, transparent 100%);
   }
 
-  .layer-home{ --c1:#D8A448; --e1:#F6CD79; --c2:#C97B63; --e2:#EFAF92; --c3:#7FB3B0; --e3:#B0DDD9; }
-  .layer-work{ --c1:#4FB3A9; --e1:#82E3D4; --c2:#6C8EBF; --e2:#A3C3F0; --c3:#9B87C4; --e3:#CBB9EE; }
-  .layer-contact{ --c1:#C98BA6; --e1:#F0BBD6; --c2:#9B87C4; --e2:#CFC0F0; --c3:#D8A448; --e3:#F6CD79; }
+  .layer-home{ --c1:#3E6FE0; --e1:#8CAEF5; --c2:#E0823C; --e2:#F5B27D; --c3:#8B5FD9; --e3:#C0A3F0; }
+  .layer-work{ --c1:#3FA6A0; --e1:#82DCD5; --c2:#D9A23B; --e2:#F5CE7F; --c3:#A05FD9; --e3:#D3A8F5; }
+  .layer-contact{ --c1:#D97A3B; --e1:#F5AD7A; --c2:#3B7AD9; --e2:#82ADF5; --c3:#A8D93B; --e3:#D6F582; }
 
   .bg-scrim{ position:absolute; inset:0; background: rgba(18,25,31,0.4); }
 
@@ -123,10 +123,11 @@
   .hero-graphic{ opacity:0; animation: hero-in .9s ease-out .25s forwards; }
   .hero-graphic svg{ width: 100%; height: auto; }
   .hero-graphic .node{ animation: pulse 3.4s ease-in-out infinite; }
-  .hero-graphic .node:nth-child(2){ animation-delay: .4s; }
-  .hero-graphic .node:nth-child(3){ animation-delay: .8s; }
-  .hero-graphic .node:nth-child(4){ animation-delay: 1.2s; }
-  .hero-graphic .node:nth-child(5){ animation-delay: 1.6s; }
+  .hero-graphic .node:nth-of-type(2){ animation-delay: .35s; }
+  .hero-graphic .node:nth-of-type(3){ animation-delay: .7s; }
+  .hero-graphic .node:nth-of-type(4){ animation-delay: 1.05s; }
+  .hero-graphic .node:nth-of-type(5){ animation-delay: 1.4s; }
+  .hero-graphic .node:nth-of-type(6){ animation-delay: 1.75s; }
 
   @keyframes hero-in{ to{ opacity:1; transform: translateY(0); } }
   @keyframes pulse{ 0%,100%{ opacity: .55; } 50%{ opacity: 1; } }
@@ -255,11 +256,13 @@
           <line x1="150" y1="130" x2="250" y2="100" stroke="#33404A" stroke-width="1.5"/>
           <line x1="150" y1="130" x2="230" y2="220" stroke="#33404A" stroke-width="1.5"/>
           <line x1="120" y1="230" x2="230" y2="220" stroke="#33404A" stroke-width="1.5"/>
-          <circle class="node" cx="60" cy="70" r="9" fill="#D8A448"/>
-          <circle class="node" cx="150" cy="130" r="12" fill="#7FB3B0"/>
-          <circle class="node" cx="250" cy="100" r="8" fill="#C98BA6"/>
-          <circle class="node" cx="120" cy="230" r="10" fill="#8AA6C9"/>
-          <circle class="node" cx="230" cy="220" r="7" fill="#C9A46A"/>
+          <line x1="120" y1="230" x2="30" y2="250" stroke="#33404A" stroke-width="1.5"/>
+          <rect class="node" x="52" y="62" width="16" height="16" rx="3" fill="#3E6FE0"/>
+          <rect class="node" x="139" y="119" width="22" height="22" rx="4" fill="#E0823C"/>
+          <rect class="node" x="243" y="93" width="14" height="14" rx="3" fill="#8B5FD9"/>
+          <rect class="node" x="111" y="221" width="18" height="18" rx="3" fill="#7AA6F5"/>
+          <rect class="node" x="223.5" y="213.5" width="13" height="13" rx="3" fill="#F0A868"/>
+          <rect class="node" x="22.5" y="242.5" width="15" height="15" rx="3" fill="#B79AF0"/>
         </svg>
       </div>
     </div>
@@ -312,9 +315,9 @@
    on the page (nav, hero, contact) updates with it.
    ========================================================================= */
 const SITE_CONFIG = {
-  name: "Henri Mursu",
+  name: "Henri M",
   role: "Software Developer",
-  heroHeadline: "Hi, I'm Henri Mursu.",
+  heroHeadline: "Hi, I'm Henri M.",
   heroIntro: "I build web and mobile products end to end — from the first sketch of an idea to the backend that keeps it running at 2am. I like clean interfaces, fast APIs, and code that's still easy to read in a year.",
   contactIntro: "Open to new roles and interesting problems. The fastest way to reach me is email — I try to reply within a day or two.",
   email: "hello@example.com",
