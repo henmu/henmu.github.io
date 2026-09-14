@@ -184,19 +184,9 @@ function applyConfig(){
   set('githubValue', el => el.textContent = SITE_CONFIG.githubDisplay);
 }
 
-function initSceneSwitcher(){
-  const sections = document.querySelectorAll('main section[id]');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) document.body.setAttribute('data-scene', entry.target.id);
-    });
-  }, { root: null, threshold: 0, rootMargin: '-45% 0px -45% 0px' });
-  sections.forEach(s => observer.observe(s));
-}
-
 (async function init(){
   await loadSections();
   applyConfig();
   renderProjects();
-  initSceneSwitcher();
 })();
+
