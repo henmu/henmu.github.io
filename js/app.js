@@ -3,16 +3,16 @@
    on the page (nav, hero, contact) updates with it.
    ========================================================================= */
 const SITE_CONFIG = {
-  name: "Henri M",
+  name: "Henri Mursu",
   role: "Software Developer",
-  heroHeadline: "Hi, I'm Henri M.",
-  heroIntro: "I build web and mobile products end to end — from the first sketch of an idea to the backend that keeps it running at 2am. I like clean interfaces, fast APIs, and code that's still easy to read in a year.",
-  contactIntro: "Open to new roles and interesting problems. The fastest way to reach me is email — I try to reply within a day or two.",
-  email: "hello@example.com",
-  linkedinUrl: "https://linkedin.com/in/your-handle",
-  linkedinDisplay: "linkedin.com/in/your-handle",
-  githubUrl: "https://github.com/your-handle",
-  githubDisplay: "github.com/your-handle"
+  heroHeadline: "Hi, I'm Henri Mursu.",
+  heroIntro: "I build web and mobile products end to end — from the first sketch of an idea to the backend that keeps it running at 2am. I like clean interfaces, fast APIs, and code that's still easy to read in a year. I build web, mobile, and game products end to end. From the first nugget of an idea to the backend that keeps it running. I like to think of the end users experience and build products that are easy to use, fast, and reliable.",
+  contactIntro: "Open to new roles and interesting problems. The fastest way to reach me is email. I try to reply within a day or two.",
+  email: "henri.mursu@gmail.com",
+  linkedinUrl: "https://linkedin.com/in/henmu",
+  linkedinDisplay: "linkedin.com/in/henmu",
+  githubUrl: "https://github.com/henmu",
+  githubDisplay: "github.com/henmu"
 };
 
 /* =========================================================================
@@ -25,9 +25,9 @@ const SITE_CONFIG = {
    ========================================================================= */
 const PROJECTS = [
   {
-    title: "Fleet Tracker",
-    description: "Real-time dashboard for tracking delivery vehicles across a city, with live ETAs and route replay.",
-    languages: ["TypeScript", "React"],
+    title: "Slipmark",
+    description: "Mozilla Firefox extension for saving and organizing bookmarks, where the url is not the only thing that matters.",
+    languages: ["Javascript", "React"],
     types: ["Web App"],
     image: ""
   },
