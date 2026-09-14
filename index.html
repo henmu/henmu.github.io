@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Henri Mursu — Software Developer</title>
-<meta name="description" content="Portfolio of Henri Mursu, software developer. Selected projects, skills, and contact info.">
+<title>Henri M — Software Developer</title>
+<meta name="description" content="Portfolio of Henri M, software developer. Selected projects, skills, and contact info.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%2312191F'/%3E%3Ctext x='50' y='68' font-size='54' text-anchor='middle' fill='%23D8A448' font-family='monospace'%3E%7B%7D%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,7 +49,7 @@
 
   .wrap{ max-width: var(--max-w); margin: 0 auto; padding: 0 28px; }
 
-  /* ---------- Animated smoke background ---------- */
+  /* ---------- Section-tinted gradient background (static, no motion) ---------- */
   .bg-scene{
     position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none;
   }
@@ -64,19 +64,15 @@
   .blob{
     position: absolute; border-radius: 50%;
     filter: blur(70px); mix-blend-mode: screen; opacity: 0.62;
-    will-change: transform;
   }
   .blob-a{ width: 55vw; height: 55vw; top: -12%; left: -8%;
     background: radial-gradient(circle, transparent 0%, var(--c1) 42%, var(--e1) 68%, transparent 100%);
-    animation: drift-a 30s ease-in-out infinite alternate;
   }
   .blob-b{ width: 46vw; height: 46vw; top: 28%; right: -10%;
     background: radial-gradient(circle, transparent 0%, var(--c2) 42%, var(--e2) 68%, transparent 100%);
-    animation: drift-b 36s ease-in-out infinite alternate; animation-delay: -8s;
   }
   .blob-c{ width: 50vw; height: 50vw; bottom: -16%; left: 22%;
     background: radial-gradient(circle, transparent 0%, var(--c3) 42%, var(--e3) 68%, transparent 100%);
-    animation: drift-c 24s ease-in-out infinite alternate; animation-delay: -14s;
   }
 
   .layer-home{ --c1:#D8A448; --e1:#F6CD79; --c2:#C97B63; --e2:#EFAF92; --c3:#7FB3B0; --e3:#B0DDD9; }
@@ -84,26 +80,6 @@
   .layer-contact{ --c1:#C98BA6; --e1:#F0BBD6; --c2:#9B87C4; --e2:#CFC0F0; --c3:#D8A448; --e3:#F6CD79; }
 
   .bg-scrim{ position:absolute; inset:0; background: rgba(18,25,31,0.4); }
-
-  @keyframes drift-a{
-    0%{ transform: translate(0,0) scale(1); }
-    50%{ transform: translate(6vw, 7vw) scale(1.15); }
-    100%{ transform: translate(-4vw, 2vw) scale(0.95); }
-  }
-  @keyframes drift-b{
-    0%{ transform: translate(0,0) scale(1); }
-    50%{ transform: translate(-7vw, -5vw) scale(1.12); }
-    100%{ transform: translate(4vw, -8vw) scale(0.92); }
-  }
-  @keyframes drift-c{
-    0%{ transform: translate(0,0) scale(1); }
-    50%{ transform: translate(4vw, -6vw) scale(1.18); }
-    100%{ transform: translate(-6vw, 4vw) scale(1); }
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    .blob{ animation: none; }
-  }
 
   /* ---------- Nav ---------- */
   .site-nav{
@@ -247,7 +223,7 @@
 
 <header class="site-nav">
   <div class="nav-inner">
-    <a href="#home" class="nav-name" id="navName">Henri<span>.</span>Mursu</a>
+    <a href="#home" class="nav-name" id="navName">Henri<span>.</span>M</a>
     <nav class="nav-links">
       <a href="#work">Work</a>
       <a href="#contact">Contact</a>
@@ -261,7 +237,7 @@
     <div class="hero wrap" style="padding-left:0; padding-right:0;">
       <div class="hero-content">
         <span class="hero-role" id="heroRole">Software Developer</span>
-        <h1 id="heroName">Hi, I'm Henri Mursu.</h1>
+        <h1 id="heroName">Hi, I'm Henri M.</h1>
         <p class="hero-intro" id="heroIntro">
           I build web and mobile products end to end — from the first sketch of an idea to the
           backend that keeps it running at 2am. I like clean interfaces, fast APIs, and code
@@ -325,7 +301,7 @@
 
 <footer>
   <div class="wrap">
-    <span id="footerName">Henri Mursu</span>
+    <span id="footerName">Henri M</span>
     <span id="footerYear"></span>
   </div>
 </footer>
@@ -341,11 +317,11 @@ const SITE_CONFIG = {
   heroHeadline: "Hi, I'm Henri Mursu.",
   heroIntro: "I build web and mobile products end to end — from the first sketch of an idea to the backend that keeps it running at 2am. I like clean interfaces, fast APIs, and code that's still easy to read in a year.",
   contactIntro: "Open to new roles and interesting problems. The fastest way to reach me is email — I try to reply within a day or two.",
-  email: "henri.mursu@gmail.com",
-  linkedinUrl: "https://linkedin.com/in/henmu",
-  linkedinDisplay: "linkedin.com/in/henmu",
-  githubUrl: "https://github.com/henmu",
-  githubDisplay: "github.com/henmu"
+  email: "hello@example.com",
+  linkedinUrl: "https://linkedin.com/in/your-handle",
+  linkedinDisplay: "linkedin.com/in/your-handle",
+  githubUrl: "https://github.com/your-handle",
+  githubDisplay: "github.com/your-handle"
 };
 
 /* =========================================================================
