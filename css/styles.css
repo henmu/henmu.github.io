@@ -5,6 +5,7 @@
   --text: #ECE8DE;
   --text-muted: #9CA6AC;
   --accent: #D8A448;
+  --accent-light: #F0C878;
   --accent-soft: rgba(216,164,72,0.14);
   --border: rgba(236,232,222,0.12);
   --border-strong: rgba(236,232,222,0.22);
@@ -20,7 +21,7 @@
 html{ scroll-behavior: smooth; }
 body{
   margin:0;
-  background: linear-gradient(to bottom, #24417A 0%, #3A2E63 55%, #4A2E7A 100%);
+  background: linear-gradient(to bottom, #8A5434 0%, #6B4A52 35%, #3F3A5E 70%, #241F45 100%);
   color: var(--text);
   font-family: var(--sans);
   font-size: 16px;
@@ -62,7 +63,7 @@ ul{ margin:0; padding:0; list-style:none; }
 .hero-content{ opacity:0; transform: translateY(14px); animation: hero-in .8s ease-out .1s forwards; }
 .hero-content h1{ font-size: clamp(2.1rem, 4vw, 3rem); letter-spacing: -0.01em; }
 .hero-intro{ margin-top: 20px; max-width: 46ch; color: var(--text); font-size: 1.05rem; }
-.hero-role{ font-family: var(--mono); color: var(--accent); font-size: 0.9rem; margin-bottom: 14px; display:block; }
+.hero-role{ font-family: var(--mono); color: var(--accent-light); font-size: 0.9rem; margin-bottom: 14px; display:block; }
 .hero-actions{ display:flex; gap: 14px; margin-top: 32px; flex-wrap: wrap; }
 
 .btn{
