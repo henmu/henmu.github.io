@@ -134,36 +134,6 @@ async function loadSections(){
   }));
 }
 
-function renderProjects(){
-  const list = document.getElementById('projectList');
-  if (!list) return;
-  list.innerHTML = PROJECTS.map(p => {
-    const primaryColor = colorForTag(p.languages[0] || p.types[0] || "?", LANG_COLORS);
-    const iconMarkup = TYPE_ICONS[p.types[0]] || DEFAULT_ICON;
-    const thumb = p.image
-      ? `<div class="project-thumb project-thumb-img"><img src="${p.image}" alt="${p.title} screenshot"></div>`
-      : `<div class="project-thumb project-thumb-generated" style="background: linear-gradient(150deg, ${primaryColor}55, #1B242C 75%); color:${primaryColor};">${iconMarkup}</div>`;
-
-    const langTags = p.languages.map(l => {
-      const c = colorForTag(l, LANG_COLORS);
-      return `<span class="tag tag-lang" style="background:${c};">${l}</span>`;
-    }).join('');
-    const typeTags = p.types.map(t => {
-      const c = colorForTag(t, TYPE_COLORS);
-      return `<span class="tag tag-type" style="--tag-color:${c};">${t}</span>`;
-    }).join('');
-
-    return `<article class="project-card">
-      ${thumb}
-      <div class="project-body">
-        <h3 class="project-title">${p.title}</h3>
-        <p class="project-desc">${p.description}</p>
-        <div class="project-tags">${langTags}${typeTags}</div>
-      </div>
-    </article>`;
-  }).join('');
-}
-
 /* =========================================================================
    EDIT ME — short "how I think / how I work" blocks shown on the home
    page below the hero. Add, remove, or rewrite freely — each one just
@@ -302,7 +272,6 @@ function renderProjects(){
   }).join('');
 }
 
-
 function applyConfig(){
   document.title = `${SITE_CONFIG.name} — ${SITE_CONFIG.role}`;
   const set = (id, fn) => { const el = document.getElementById(id); if (el) fn(el); };
@@ -326,6 +295,6 @@ function applyConfig(){
 (async function init(){
   await loadSections();
   applyConfig();
+  renderAbout();
   renderProjects();
 })();
-
