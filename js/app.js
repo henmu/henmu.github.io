@@ -292,9 +292,28 @@ function applyConfig(){
   set('githubValue', el => el.textContent = SITE_CONFIG.githubDisplay);
 }
 
+function initPersonaToggle(){
+  const buttons = document.querySelectorAll('.persona-toggle-btn');
+  const panels = document.querySelectorAll('.persona-panel');
+  if (!buttons.length || !panels.length) return;
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const persona = btn.dataset.persona;
+      buttons.forEach(b => {
+        const isActive = b === btn;
+        b.classList.toggle('active', isActive);
+        b.setAttribute('aria-pressed', String(isActive));
+      });
+      panels.forEach(p => { p.hidden = p.dataset.persona !== persona; });
+    });
+  });
+}
+
 (async function init(){
   await loadSections();
   applyConfig();
   renderAbout();
   renderProjects();
+  initPersonaToggle();
 })();
+

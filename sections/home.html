@@ -40,23 +40,25 @@
   <p class="about-lead">A bit of context that shapes how I work, not just what I've built.</p>
   <div class="about-grid" id="aboutGrid"></div>
 
-  <p class="about-lead about-split-lead">I also think about myself a little differently depending on which hat I'm wearing:</p>
-  <div class="about-tracks">
-    <div class="about-track track-software">
-      <h3>As a Software Developer</h3>
-      <div class="about-grid" id="aboutGridSoftware"></div>
-    </div>
-    <div class="about-track track-game">
-      <h3>As a Game Developer</h3>
-      <div class="about-grid" id="aboutGridGame"></div>
+  <p class="about-lead persona-lead">I also think about myself a little differently depending on which hat I'm wearing — pick a side:</p>
+
+  <div class="persona-toggle-wrap">
+    <div class="persona-toggle">
+      <button class="persona-toggle-btn active" data-persona="software" aria-pressed="true">Software Developer</button>
+      <button class="persona-toggle-btn" data-persona="game" aria-pressed="false">Game Developer</button>
     </div>
   </div>
 
-  <div class="about-features">
+  <div class="persona-panel" data-persona="software">
+    <div class="about-grid" id="aboutGridSoftware"></div>
     <article class="about-feature feature-software">
       <h3>How I Experience Imagination <span class="feature-tag">Software Developer</span></h3>
       <div id="featureSoftwareBody"></div>
     </article>
+  </div>
+
+  <div class="persona-panel" data-persona="game" hidden>
+    <div class="about-grid" id="aboutGridGame"></div>
     <article class="about-feature feature-game">
       <h3>How I Experience Imagination <span class="feature-tag">Game Developer</span></h3>
       <div id="featureGameBody"></div>

@@ -104,18 +104,25 @@ ul{ margin:0; padding:0; list-style:none; }
 .about-card h3{ font-size: 1.05rem; margin-bottom: 10px; }
 .about-card p{ color: var(--text-muted); font-size: 0.95rem; line-height: 1.65; }
 
-.about-split-lead{ margin-top: 48px; }
-.about-tracks{ display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 24px; }
-.about-track{
-  padding: 22px; border-radius: var(--radius); border: 1px solid var(--border);
-  border-top: 3px solid var(--track-color); background: rgba(18,20,31,0.2);
-}
-.about-track h3{ font-size: 1.15rem; margin-bottom: 16px; }
-.about-track .about-grid{ grid-template-columns: 1fr; margin-top: 0; gap: 16px; }
-.track-software{ --track-color: #3E6FE0; }
-.track-game{ --track-color: #8B5FD9; }
+.about-split-lead, .persona-lead{ margin-top: 48px; text-align: center; }
 
-.about-features{ display: flex; flex-direction: column; gap: 32px; margin-top: 56px; }
+/* ---------- Persona toggle (Software Developer / Game Developer) ---------- */
+.persona-toggle-wrap{ display: flex; justify-content: center; margin: 20px 0 44px; }
+.persona-toggle{
+  display: inline-flex; gap: 4px; padding: 4px; border-radius: 999px;
+  background: rgba(18,20,31,0.35); border: 1px solid var(--border);
+}
+.persona-toggle-btn{
+  font-family: var(--sans); font-weight: 600; font-size: 0.9rem;
+  padding: 10px 22px; border-radius: 999px; border: none; background: transparent;
+  color: var(--text-muted); cursor: pointer; transition: background .15s ease, color .15s ease;
+}
+.persona-toggle-btn:hover{ color: var(--text); }
+.persona-toggle-btn[data-persona="software"].active{ background: #3E6FE0; color: #fff; }
+.persona-toggle-btn[data-persona="game"].active{ background: #8B5FD9; color: #fff; }
+
+.persona-panel{ display: flex; flex-direction: column; gap: 32px; }
+
 .about-feature{
   padding: 28px 32px; border-radius: var(--radius); border: 1px solid var(--border);
   border-left: 4px solid var(--track-color); background: rgba(18,20,31,0.25);
@@ -134,10 +141,6 @@ ul{ margin:0; padding:0; list-style:none; }
 }
 .feature-software{ --track-color: #3E6FE0; }
 .feature-game{ --track-color: #8B5FD9; }
-
-@media (max-width: 700px){
-  .about-tracks{ grid-template-columns: 1fr; }
-}
 
 /* ---------- Section shell ---------- */
 section{ padding: 84px 0; border-top: 1px solid var(--border); }
