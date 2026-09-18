@@ -170,47 +170,48 @@ const ABOUT_GAME = [
 
 /* =========================================================================
    EDIT ME — the two "How I Experience Imagination" essays, one per hat.
-   Shape: { intro: [paragraphs with no heading], chapters: [{ heading,
-   paragraphs }] }. Everything renders fully visible and in order — intro
-   first, then each chapter with its own subheading — so a reader can
-   skim the headings without anything being hidden or collapsed.
-   FEATURE_GAME's text is yours, unedited, just split into chapters.
-   FEATURE_SOFTWARE is a short first draft — rewrite it in your own voice
-   whenever you're ready.
+   Each is an array of chapters: [{ heading, paragraphs }]. Every chapter
+   renders as its own card, styled like the project cards, in order —
+   nothing is hidden or collapsed. FEATURE_GAME's text is yours, unedited,
+   just split into chapters. FEATURE_SOFTWARE is a short first draft —
+   rewrite it in your own voice whenever you're ready.
    ========================================================================= */
-const FEATURE_SOFTWARE = {
-  intro: [
-    "On the software side, aphantasia shows up differently — less as a source of joy and more as a practical constraint I've had to design around. When I'm reasoning through an architecture or a data flow, there's no mental picture to check it against, so I have to make the system visible some other way — diagrams, written specs, small runnable prototypes — before I trust it.",
-    "This has pushed me toward a fairly deliberate, externalize-everything style of working. I sketch things out early rather than holding a design in my head, and I lean on tests and small, verifiable steps instead of trying to picture the whole system running before I've built it. Software rewards this in a way: the real source of truth is the code itself, not what's in anyone's head, so the habit of writing things down early has mostly worked in my favor.",
-    "Where it's harder is anything visual — UI work, layout, design decisions — for reasons similar to what I describe on the game development side. I can know what I want something to accomplish without being able to picture what it should look like, so I lean more on iteration, references, and feedback than on getting it right from imagination alone."
-  ],
-  chapters: []
-};
+const FEATURE_SOFTWARE = [
+  {
+    heading: "How I Experience Imagination",
+    paragraphs: [
+      "On the software side, aphantasia shows up differently — less as a source of joy and more as a practical constraint I've had to design around. When I'm reasoning through an architecture or a data flow, there's no mental picture to check it against, so I have to make the system visible some other way — diagrams, written specs, small runnable prototypes — before I trust it.",
+      "This has pushed me toward a fairly deliberate, externalize-everything style of working. I sketch things out early rather than holding a design in my head, and I lean on tests and small, verifiable steps instead of trying to picture the whole system running before I've built it. Software rewards this in a way: the real source of truth is the code itself, not what's in anyone's head, so the habit of writing things down early has mostly worked in my favor.",
+      "Where it's harder is anything visual — UI work, layout, design decisions — for reasons similar to what I describe on the game development side. I can know what I want something to accomplish without being able to picture what it should look like, so I lean more on iteration, references, and feedback than on getting it right from imagination alone."
+    ]
+  }
+];
 
-const FEATURE_GAME = {
-  intro: [
-    "In recent years, I discovered that I have aphantasia — I don't form visual images in my mind. I understand now that this may be part of why I've always been so drawn to games, films, and other visual media. They allow me to experience thoughts and ideas brought to life in a way that I can actually see.",
-    "I think this is also part of why I get so easily absorbed into games and films. When I'm playing a story-driven game, I tend to immerse myself in what is happening and enjoy the moment rather than think ahead about what might happen next. I often put myself into the character and make choices based on what I would personally do. In Baldur's Gate 3, for example, I've always played as the good guy, saving the Grove and never allying with the goblins. I generally follow my own moral code rather than choosing whatever would be most advantageous in the game.",
-    "That doesn't mean I approach every type of game this way. In more systems-driven games such as Shapez and Cities: Skylines, I can become just as absorbed, but in a different way. I enjoy figuring out how the systems work and trying to optimize them. Survival crafting games such as Minecraft and Valheim are a little different again. I enjoy them, but not being able to visualize what I want to build can be frustrating. I've sometimes found myself envying people who can seemingly picture a building or structure in their head and then simply build it. And perhaps unsurprisingly, all this immersion also means I can get scared surprisingly easily by things like jump scares."
-  ],
-  chapters: [
-    {
-      heading: "Me as a Storyteller",
-      paragraphs: [
-        "I also wonder if aphantasia is connected to how much I enjoy coming up with stories and game ideas. I have a lot of little premises, mechanics, characters, and situations that I keep turning over in my head. I enjoy thinking about where an idea could go, what might happen next, or what kind of game could be built around it. I've also played TTRPGs, and I've found that I enjoy being the DM more than being a player. I like coming up with the situations and stories for other people to experience and seeing what they do with them.",
-        "I've always wanted to be a storyteller, and games feel like the medium that makes the most sense for me. If a story is written as black on white, other people can enjoy it through the words, but I don't experience it in quite the same way. Games give me a way to turn those ideas into something I can actually see and experience. Making games lets me take that one step further and try to create those experiences for other people too."
-      ]
-    },
-    {
-      heading: "Me as a Game Developer",
-      paragraphs: [
-        "At the same time, aphantasia has been a significant challenge in my own game projects. I can have an idea of what something should be or how it should feel without being able to picture exactly what it looks like. This can make things like coming up with visuals and UI particularly difficult, as well as describing what I have in mind to others. I'm still learning how to work with these challenges and find the approaches and tools that work best for me. It's an ongoing process, and experimentation is a big part of figuring it out.",
-        "What makes game development feel like such a natural creative outlet for me is that visuals are only one part of making a game. There is programming, gameplay, interactions, systems, storytelling, sound, and many other parts of the process. I don't need to be able to picture the entire finished game to be part of bringing it to life.",
-        "For me, games have been a way to experience worlds and ideas visually for years, and now I get to try creating them myself."
-      ]
-    }
-  ]
-};
+const FEATURE_GAME = [
+  {
+    heading: "How I Experience Imagination",
+    paragraphs: [
+      "In recent years, I discovered that I have aphantasia — I don't form visual images in my mind. I understand now that this may be part of why I've always been so drawn to games, films, and other visual media. They allow me to experience thoughts and ideas brought to life in a way that I can actually see.",
+      "I think this is also part of why I get so easily absorbed into games and films. When I'm playing a story-driven game, I tend to immerse myself in what is happening and enjoy the moment rather than think ahead about what might happen next. I often put myself into the character and make choices based on what I would personally do. In Baldur's Gate 3, for example, I've always played as the good guy, saving the Grove and never allying with the goblins. I generally follow my own moral code rather than choosing whatever would be most advantageous in the game.",
+      "That doesn't mean I approach every type of game this way. In more systems-driven games such as Shapez and Cities: Skylines, I can become just as absorbed, but in a different way. I enjoy figuring out how the systems work and trying to optimize them. Survival crafting games such as Minecraft and Valheim are a little different again. I enjoy them, but not being able to visualize what I want to build can be frustrating. I've sometimes found myself envying people who can seemingly picture a building or structure in their head and then simply build it. And perhaps unsurprisingly, all this immersion also means I can get scared surprisingly easily by things like jump scares."
+    ]
+  },
+  {
+    heading: "Me as a Storyteller",
+    paragraphs: [
+      "I also wonder if aphantasia is connected to how much I enjoy coming up with stories and game ideas. I have a lot of little premises, mechanics, characters, and situations that I keep turning over in my head. I enjoy thinking about where an idea could go, what might happen next, or what kind of game could be built around it. I've also played TTRPGs, and I've found that I enjoy being the DM more than being a player. I like coming up with the situations and stories for other people to experience and seeing what they do with them.",
+      "I've always wanted to be a storyteller, and games feel like the medium that makes the most sense for me. If a story is written as black on white, other people can enjoy it through the words, but I don't experience it in quite the same way. Games give me a way to turn those ideas into something I can actually see and experience. Making games lets me take that one step further and try to create those experiences for other people too."
+    ]
+  },
+  {
+    heading: "Me as a Game Developer",
+    paragraphs: [
+      "At the same time, aphantasia has been a significant challenge in my own game projects. I can have an idea of what something should be or how it should feel without being able to picture exactly what it looks like. This can make things like coming up with visuals and UI particularly difficult, as well as describing what I have in mind to others. I'm still learning how to work with these challenges and find the approaches and tools that work best for me. It's an ongoing process, and experimentation is a big part of figuring it out.",
+      "What makes game development feel like such a natural creative outlet for me is that visuals are only one part of making a game. There is programming, gameplay, interactions, systems, storytelling, sound, and many other parts of the process. I don't need to be able to picture the entire finished game to be part of bringing it to life.",
+      "For me, games have been a way to experience worlds and ideas visually for years, and now I get to try creating them myself."
+    ]
+  }
+];
 
 function renderAboutGrid(containerId, items){
   const grid = document.getElementById(containerId);
@@ -223,15 +224,15 @@ function renderAboutGrid(containerId, items){
   `).join('');
 }
 
-function renderFeature(containerId, feature){
+function renderFeature(containerId, chapters){
   const el = document.getElementById(containerId);
   if (!el) return;
-  const introHtml = feature.intro.map(p => `<p>${p}</p>`).join('');
-  const chaptersHtml = feature.chapters.map(ch => `
-    <h4 class="feature-chapter-heading">${ch.heading}</h4>
-    ${ch.paragraphs.map(p => `<p>${p}</p>`).join('')}
+  el.innerHTML = chapters.map(ch => `
+    <div class="chapter-card">
+      <h4>${ch.heading}</h4>
+      ${ch.paragraphs.map(p => `<p>${p}</p>`).join('')}
+    </div>
   `).join('');
-  el.innerHTML = introHtml + chaptersHtml;
 }
 
 function renderAbout(){

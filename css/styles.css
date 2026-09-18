@@ -124,22 +124,23 @@ ul{ margin:0; padding:0; list-style:none; }
 .persona-panel{ display: flex; flex-direction: column; gap: 32px; }
 .persona-panel[hidden]{ display: none; }
 
-.about-feature{
-  padding: 28px 32px; border-radius: var(--radius); border: 1px solid var(--border);
-  border-left: 4px solid var(--track-color); background: rgba(18,20,31,0.25);
-}
 .about-feature h3{
-  font-size: 1.3rem; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 18px;
+  font-size: 1.3rem; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 20px;
 }
 .feature-tag{
   font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
   padding: 4px 10px; border-radius: 999px; border: 1px solid var(--track-color); color: var(--track-color);
 }
-.about-feature p{ color: var(--text); font-size: 0.98rem; line-height: 1.75; max-width: 72ch; }
-.about-feature p + p{ margin-top: 16px; }
-.feature-chapter-heading{
-  font-size: 1.05rem; color: var(--track-color); margin: 28px 0 12px;
+.chapter-list{ display: flex; flex-direction: column; gap: 20px; }
+.chapter-card{
+  padding: 24px; border-radius: var(--radius); border: 1px solid var(--border);
+  border-left: 4px solid var(--track-color); background: var(--bg-raised);
+  transition: border-color .15s ease;
 }
+.chapter-card:hover{ border-color: var(--border-strong); border-left-color: var(--track-color); }
+.chapter-card h4{ font-size: 1.05rem; color: var(--track-color); margin-bottom: 12px; }
+.chapter-card p{ color: var(--text); font-size: 0.98rem; line-height: 1.75; max-width: 72ch; }
+.chapter-card p + p{ margin-top: 14px; }
 .feature-software{ --track-color: #3E6FE0; }
 .feature-game{ --track-color: #8B5FD9; }
 
