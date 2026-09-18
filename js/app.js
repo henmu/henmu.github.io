@@ -292,6 +292,16 @@ function applyConfig(){
   set('githubValue', el => el.textContent = SITE_CONFIG.githubDisplay);
 }
 
+function scrollToggleUnderHeader(){
+  const header = document.querySelector('.site-nav');
+  const toggle = document.querySelector('.persona-toggle-wrap');
+  if (!header || !toggle) return;
+  const headerHeight = header.getBoundingClientRect().height;
+  const targetTop = toggle.getBoundingClientRect().top + window.scrollY - headerHeight - 16;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  window.scrollTo({ top: Math.max(targetTop, 0), behavior: reduceMotion ? 'auto' : 'smooth' });
+}
+
 function initPersonaToggle(){
   const buttons = document.querySelectorAll('.persona-toggle-btn');
   const panels = document.querySelectorAll('.persona-panel');
@@ -305,6 +315,7 @@ function initPersonaToggle(){
         b.setAttribute('aria-pressed', String(isActive));
       });
       panels.forEach(p => { p.hidden = p.dataset.persona !== persona; });
+      scrollToggleUnderHeader();
     });
   });
 }
