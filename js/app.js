@@ -321,6 +321,44 @@ function initPersonaToggle(){
   });
 }
 
+/* ---------- In-page navigation without touching the URL ----------
+   Normal "#work" links append a hash to the address bar. Instead we catch
+   the click, scroll to the section ourselves, and leave the URL alone.
+   One delegated listener covers the nav and the hero buttons, even though
+   the latter are loaded in later from sections/home.html. ---------- */
+function initInPageNav(){
+  document.addEventListener('click', (e) => {
+    if (e.defaultPrevented || e.button !== 0) return;
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return; // keep "open in new tab" working
+
+    const link = e.target.closest('a[href^="#"]');
+    if (!link) return;
+
+    const hash = link.getAttribute('href');
+    if (hash === '#') return;
+
+    const id = decodeURIComponent(hash.slice(1));
+    const target = document.getElementById(id);
+    if (!target) return;
+
+    e.preventDefault();
+
+    const header = document.querySelector('.site-nav');
+    const headerHeight = header ? header.getBoundingClientRect().height : 0;
+    const top = id === 'home'
+      ? 0
+      : target.getBoundingClientRect().top + window.scrollY - headerHeight;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: Math.max(top, 0), behavior: reduceMotion ? 'auto' : 'smooth' });
+
+    // Keep keyboard / screen-reader focus in sync with where we scrolled
+    target.setAttribute('tabindex', '-1');
+    target.focus({ preventScroll: true });
+  });
+}
+
+initInPageNav();
+
 (async function init(){
   await loadSections();
   applyConfig();
