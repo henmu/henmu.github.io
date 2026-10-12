@@ -13,7 +13,7 @@
   --display: "Space Grotesk", "IBM Plex Sans", -apple-system, sans-serif;
   --sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, sans-serif;
   --mono: "IBM Plex Mono", "SFMono-Regular", Menlo, monospace;
-  --max-w: 920px;
+  --max-w: 1280px;
 }
 
 /* ---------- Reset ---------- */
@@ -76,7 +76,7 @@ ul{ margin:0; padding:0; list-style:none; }
 .btn-outline{ border-color: var(--border-strong); color: var(--text); }
 .btn-outline:hover{ border-color: var(--accent); color: var(--accent); }
 
-.hero-graphic{ opacity:0; animation: hero-in .9s ease-out .25s forwards; }
+.hero-graphic{ opacity:0; animation: hero-in .9s ease-out .25s forwards; max-width: 380px; justify-self: end; width: 100%; }
 .hero-graphic svg{ width: 100%; height: auto; }
 
 @keyframes hero-in{ to{ opacity:1; transform: translateY(0); } }
@@ -104,7 +104,7 @@ ul{ margin:0; padding:0; list-style:none; }
 .about-card h3{ font-size: 1.05rem; margin-bottom: 10px; }
 .about-card p{ color: var(--text-muted); font-size: 0.95rem; line-height: 1.65; }
 
-.about-split-lead, .persona-lead{ margin-top: 48px; text-align: center; }
+.about-split-lead, .persona-lead{ margin-top: 48px; margin-left: auto; margin-right: auto; text-align: center; }
 
 /* ---------- Persona toggle (Software Developer / Game Developer) ---------- */
 .persona-toggle-wrap{ display: flex; justify-content: center; margin: 20px 0 44px; }
@@ -139,7 +139,7 @@ ul{ margin:0; padding:0; list-style:none; }
 }
 .chapter-card:hover{ border-color: var(--border-strong); border-left-color: var(--track-color); }
 .chapter-card h4{ font-size: 1.05rem; color: var(--track-color); margin-bottom: 12px; }
-.chapter-card p{ color: var(--text); font-size: 0.98rem; line-height: 1.75; max-width: 72ch; }
+.chapter-card p{ color: var(--text); font-size: 0.98rem; line-height: 1.75; max-width: 100ch; }
 .chapter-card p + p{ margin-top: 14px; }
 .feature-software{ --track-color: #3E6FE0; }
 .feature-game{ --track-color: #8B5FD9; }
@@ -158,7 +158,7 @@ section > .wrap > h2{ font-size: 1.7rem; margin-bottom: 40px; }
 .project-card:hover{ border-color: var(--border-strong); }
 
 .project-thumb{
-  flex: 0 0 33%; max-width: 33%; aspect-ratio: 4 / 5; border-radius: 6px;
+  flex: 0 0 33%; max-width: 33%; aspect-ratio: 4 / 3; border-radius: 6px;
   display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;
 }
 .project-thumb-generated::after{
