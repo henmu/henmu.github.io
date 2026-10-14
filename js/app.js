@@ -15,25 +15,25 @@ const SITE_CONFIG = {
   githubDisplay: "github.com/henmu"
 };
 
-/* =========================================================================
-   EDIT ME — your projects. Add, remove, or edit entries freely.
-   - languages: shown as solid color tags
-   - types: shown as outlined tags (e.g. "Web App", "Mobile App", "API",
-     "CLI Tool", "Game", "Library")
-   - image: optional. Leave blank to use the generated abstract cover, or
-     set to a real screenshot path/URL, e.g. "images/project1.png"
-   ========================================================================= */
 const PROJECTS = [
   {
-    title: "Slipmark",
-    description: "Mozilla Firefox extension for saving and organizing bookmarks, where the url is not the only thing that matters.",
-    languages: ["Javascript", "React"],
+    title: "Fleet Tracker",
+    description: "Real-time dashboard for tracking delivery vehicles across a city, with live ETAs and route replay.",
+    details: [
+      "Placeholder: what the problem was, who it was for, and what you set out to build.",
+      "Placeholder: your role, the interesting technical decisions, and what you'd say you're proudest of."
+    ],
+    languages: ["TypeScript", "React"],
     types: ["Web App"],
     image: ""
   },
   {
     title: "Recipe Radar",
     description: "Point your camera at your fridge and get recipe suggestions from what's actually in it, on-device.",
+    details: [
+      "Placeholder: what the problem was, who it was for, and what you set out to build.",
+      "Placeholder: your role, the interesting technical decisions, and what you'd say you're proudest of."
+    ],
     languages: ["Swift"],
     types: ["Mobile App"],
     image: ""
@@ -41,6 +41,10 @@ const PROJECTS = [
   {
     title: "Pixel Forge",
     description: "A fast command-line image pipeline for batch resizing, compression, and format conversion.",
+    details: [
+      "Placeholder: what the problem was, who it was for, and what you set out to build.",
+      "Placeholder: your role, the interesting technical decisions, and what you'd say you're proudest of."
+    ],
     languages: ["Rust"],
     types: ["CLI Tool"],
     image: ""
@@ -48,6 +52,10 @@ const PROJECTS = [
   {
     title: "Marketplace API",
     description: "The backend powering a two-sided marketplace: auth, payments, search, and webhooks for 40k+ users.",
+    details: [
+      "Placeholder: what the problem was, who it was for, and what you set out to build.",
+      "Placeholder: your role, the interesting technical decisions, and what you'd say you're proudest of."
+    ],
     languages: ["Python"],
     types: ["API"],
     image: ""
@@ -55,6 +63,10 @@ const PROJECTS = [
   {
     title: "Study Buddy",
     description: "Collaborative study rooms with shared notes, flashcards, and a spaced-repetition scheduler.",
+    details: [
+      "Placeholder: what the problem was, who it was for, and what you set out to build.",
+      "Placeholder: your role, the interesting technical decisions, and what you'd say you're proudest of."
+    ],
     languages: ["TypeScript", "React"],
     types: ["Web App"],
     image: ""
@@ -62,6 +74,10 @@ const PROJECTS = [
   {
     title: "Terrain Gen",
     description: "A procedural terrain generator with erosion simulation, rendered in real time.",
+    details: [
+      "Placeholder: what the problem was, who it was for, and what you set out to build.",
+      "Placeholder: your role, the interesting technical decisions, and what you'd say you're proudest of."
+    ],
     languages: ["C++"],
     types: ["Game"],
     image: ""
@@ -243,34 +259,93 @@ function renderAbout(){
   renderFeature('featureGameBody', FEATURE_GAME);
 }
 
+const IMAGE_PLACEHOLDER_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 16l-5-5-8 8"/></svg>';
+
+function buildTags(p){
+  const langTags = p.languages.map(l => {
+    const c = colorForTag(l, LANG_COLORS);
+    return `<span class="tag tag-lang" style="background:${c};">${l}</span>`;
+  }).join('');
+  const typeTags = p.types.map(t => {
+    const c = colorForTag(t, TYPE_COLORS);
+    return `<span class="tag tag-type" style="--tag-color:${c};">${t}</span>`;
+  }).join('');
+  return langTags + typeTags;
+}
+
 function renderProjects(){
   const list = document.getElementById('projectList');
   if (!list) return;
-  list.innerHTML = PROJECTS.map(p => {
+  list.innerHTML = PROJECTS.map((p, i) => {
     const primaryColor = colorForTag(p.languages[0] || p.types[0] || "?", LANG_COLORS);
     const iconMarkup = TYPE_ICONS[p.types[0]] || DEFAULT_ICON;
     const thumb = p.image
       ? `<div class="project-thumb project-thumb-img"><img src="${p.image}" alt="${p.title} screenshot"></div>`
       : `<div class="project-thumb project-thumb-generated" style="background: linear-gradient(150deg, ${primaryColor}55, #1B242C 75%); color:${primaryColor};">${iconMarkup}</div>`;
 
-    const langTags = p.languages.map(l => {
-      const c = colorForTag(l, LANG_COLORS);
-      return `<span class="tag tag-lang" style="background:${c};">${l}</span>`;
-    }).join('');
-    const typeTags = p.types.map(t => {
-      const c = colorForTag(t, TYPE_COLORS);
-      return `<span class="tag tag-type" style="--tag-color:${c};">${t}</span>`;
-    }).join('');
-
-    return `<article class="project-card">
+    return `<article class="project-card" role="button" tabindex="0" aria-haspopup="dialog"
+        aria-label="${p.title} — view details" data-index="${i}">
       ${thumb}
       <div class="project-body">
         <h3 class="project-title">${p.title}</h3>
         <p class="project-desc">${p.description}</p>
-        <div class="project-tags">${langTags}${typeTags}</div>
+        <div class="project-tags">${buildTags(p)}</div>
       </div>
     </article>`;
   }).join('');
+}
+
+/* ---------- Project popup (native <dialog>) ----------
+   Esc-to-close, focus trapping and the dimmed backdrop all come from the
+   browser. Cards open it on click, or Enter/Space when focused. ---------- */
+let modalReturnFocus = null;
+
+function openProject(index){
+  const p = PROJECTS[index];
+  const dlg = document.getElementById('projectModal');
+  if (!p || !dlg) return;
+
+  const media = dlg.querySelector('.modal-media');
+  media.innerHTML = p.image
+    ? `<img src="${p.image}" alt="${p.title} screenshot">`
+    : IMAGE_PLACEHOLDER_ICON;
+  media.classList.toggle('modal-media-placeholder', !p.image);
+
+  dlg.querySelector('.modal-title').textContent = p.title;
+  dlg.querySelector('.modal-tags').innerHTML = buildTags(p);
+  const paragraphs = (p.details && p.details.length) ? p.details : [p.description];
+  dlg.querySelector('.modal-text').innerHTML = paragraphs.map(t => `<p>${t}</p>`).join('');
+  dlg.querySelector('.modal-inner').scrollTop = 0;
+
+  modalReturnFocus = document.activeElement;
+  document.documentElement.classList.add('modal-open');
+  dlg.showModal();
+}
+
+function initProjectModal(){
+  const dlg = document.getElementById('projectModal');
+  const list = document.getElementById('projectList');
+  if (!dlg || !list) return;
+
+  list.addEventListener('click', (e) => {
+    const card = e.target.closest('.project-card');
+    if (card) openProject(Number(card.dataset.index));
+  });
+  list.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const card = e.target.closest('.project-card');
+    if (!card) return;
+    e.preventDefault(); // stop Space from scrolling the page
+    openProject(Number(card.dataset.index));
+  });
+
+  dlg.querySelector('.modal-close').addEventListener('click', () => dlg.close());
+  // A click on the dimmed backdrop lands on the <dialog> element itself
+  dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener('close', () => {
+    document.documentElement.classList.remove('modal-open');
+    if (modalReturnFocus && modalReturnFocus.focus) modalReturnFocus.focus({ preventScroll: true });
+  });
 }
 
 function applyConfig(){
@@ -364,6 +439,6 @@ initInPageNav();
   applyConfig();
   renderAbout();
   renderProjects();
+  initProjectModal();
   initPersonaToggle();
 })();
-
