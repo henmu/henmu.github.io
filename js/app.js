@@ -307,10 +307,42 @@ function renderProjects(){
   }).join('');
 }
 
-/* ---------- Project popup (native <dialog>) ----------
+/* ---------- Popups (native <dialog>) — shared by projects and blog posts ----------
    Esc-to-close, focus trapping and the dimmed backdrop all come from the
-   browser. Cards open it on click, or Enter/Space when focused. ---------- */
+   browser. Cards open a popup on click, or Enter/Space when focused. ---------- */
 let modalReturnFocus = null;
+
+function showDialog(dlg){
+  modalReturnFocus = document.activeElement;
+  document.documentElement.classList.add('modal-open');
+  dlg.showModal();
+}
+
+// Wire up closing (✕ button, backdrop click, Esc) and restore focus/scroll afterwards
+function initDialog(dlg){
+  dlg.querySelector('.modal-close').addEventListener('click', () => dlg.close());
+  // A click on the dimmed backdrop lands on the <dialog> element itself
+  dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener('close', () => {
+    document.documentElement.classList.remove('modal-open');
+    if (modalReturnFocus && modalReturnFocus.focus) modalReturnFocus.focus({ preventScroll: true });
+  });
+}
+
+// Make every `cardSelector` card inside `list` open on click or Enter/Space
+function bindCardActivation(list, cardSelector, open){
+  list.addEventListener('click', (e) => {
+    const card = e.target.closest(cardSelector);
+    if (card) open(Number(card.dataset.index));
+  });
+  list.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const card = e.target.closest(cardSelector);
+    if (!card) return;
+    e.preventDefault(); // stop Space from scrolling the page
+    open(Number(card.dataset.index));
+  });
+}
 
 function openProject(index){
   const p = PROJECTS[index];
@@ -328,36 +360,15 @@ function openProject(index){
   const paragraphs = (p.details && p.details.length) ? p.details : [p.description];
   dlg.querySelector('.modal-text').innerHTML = paragraphs.map(t => `<p>${t}</p>`).join('');
   dlg.querySelector('.modal-inner').scrollTop = 0;
-
-  modalReturnFocus = document.activeElement;
-  document.documentElement.classList.add('modal-open');
-  dlg.showModal();
+  showDialog(dlg);
 }
 
 function initProjectModal(){
   const dlg = document.getElementById('projectModal');
   const list = document.getElementById('projectList');
   if (!dlg || !list) return;
-
-  list.addEventListener('click', (e) => {
-    const card = e.target.closest('.project-card');
-    if (card) openProject(Number(card.dataset.index));
-  });
-  list.addEventListener('keydown', (e) => {
-    if (e.key !== 'Enter' && e.key !== ' ') return;
-    const card = e.target.closest('.project-card');
-    if (!card) return;
-    e.preventDefault(); // stop Space from scrolling the page
-    openProject(Number(card.dataset.index));
-  });
-
-  dlg.querySelector('.modal-close').addEventListener('click', () => dlg.close());
-  // A click on the dimmed backdrop lands on the <dialog> element itself
-  dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
-  dlg.addEventListener('close', () => {
-    document.documentElement.classList.remove('modal-open');
-    if (modalReturnFocus && modalReturnFocus.focus) modalReturnFocus.focus({ preventScroll: true });
-  });
+  bindCardActivation(list, '.project-card', openProject);
+  initDialog(dlg);
 }
 
 function applyConfig(){

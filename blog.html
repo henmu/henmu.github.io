@@ -42,7 +42,22 @@
   </div>
 </footer>
 
-<!-- app.js supplies the shared name/footer and tag colours; blog.js renders the posts -->
+<!-- Post popup — filled in by js/blog.js when a post card is clicked -->
+<dialog id="postModal" class="project-modal post-modal" aria-labelledby="postModalTitle">
+  <button type="button" class="modal-close" aria-label="Close post">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <div class="modal-inner">
+    <div class="modal-body">
+      <time class="modal-date"></time>
+      <h2 class="modal-title" id="postModalTitle"></h2>
+      <div class="modal-tags"></div>
+      <div class="modal-text"></div>
+    </div>
+  </div>
+</dialog>
+
+<!-- app.js supplies the shared name/footer, tag colours and popup helpers; blog.js renders the posts -->
 <script src="js/app.js" defer></script>
 <script src="js/blog.js" defer></script>
 </body>
