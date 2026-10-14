@@ -15,6 +15,18 @@ const SITE_CONFIG = {
   githubDisplay: "github.com/henmu"
 };
 
+/* =========================================================================
+   EDIT ME — your projects. Add, remove, or edit entries freely.
+   - languages: shown as solid color tags
+   - types: shown as outlined tags (e.g. "Web App", "Mobile App", "API",
+     "CLI Tool", "Game", "Library")
+   - image: optional. Leave blank to use the generated abstract cover on the
+     card (and an image placeholder in the popup), or set to a real
+     screenshot path/URL, e.g. "images/project1.png"
+   - details: optional. Longer text shown in the popup when the card is
+     clicked, one string per paragraph. If left out, the popup shows the
+     short description instead.
+   ========================================================================= */
 const PROJECTS = [
   {
     title: "Fleet Tracker",
@@ -349,7 +361,10 @@ function initProjectModal(){
 }
 
 function applyConfig(){
-  document.title = `${SITE_CONFIG.name} — ${SITE_CONFIG.role}`;
+  // Other pages (e.g. blog.html) set their own <title> and opt out with data-keep-title
+  if (!document.body.hasAttribute('data-keep-title')) {
+    document.title = `${SITE_CONFIG.name} — ${SITE_CONFIG.role}`;
+  }
   const set = (id, fn) => { const el = document.getElementById(id); if (el) fn(el); };
 
   set('navName', el => el.innerHTML = SITE_CONFIG.name.replace(' ', '<span>.</span>'));
@@ -401,6 +416,25 @@ function initPersonaToggle(){
    the click, scroll to the section ourselves, and leave the URL alone.
    One delegated listener covers the nav and the hero buttons, even though
    the latter are loaded in later from sections/home.html. ---------- */
+function scrollToSection(id, smooth){
+  const target = document.getElementById(id);
+  if (!target) return false;
+
+  const header = document.querySelector('.site-nav');
+  const headerHeight = header ? header.getBoundingClientRect().height : 0;
+  const top = id === 'home'
+    ? 0
+    : target.getBoundingClientRect().top + window.scrollY - headerHeight;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // 'instant' (not 'auto') so the page-wide CSS scroll-behavior: smooth doesn't animate a jump
+  window.scrollTo({ top: Math.max(top, 0), behavior: (smooth && !reduceMotion) ? 'smooth' : 'instant' });
+
+  // Keep keyboard / screen-reader focus in sync with where we scrolled
+  target.setAttribute('tabindex', '-1');
+  target.focus({ preventScroll: true });
+  return true;
+}
+
 function initInPageNav(){
   document.addEventListener('click', (e) => {
     if (e.defaultPrevented || e.button !== 0) return;
@@ -413,23 +447,24 @@ function initInPageNav(){
     if (hash === '#') return;
 
     const id = decodeURIComponent(hash.slice(1));
-    const target = document.getElementById(id);
-    if (!target) return;
+    if (!document.getElementById(id)) return;
 
     e.preventDefault();
-
-    const header = document.querySelector('.site-nav');
-    const headerHeight = header ? header.getBoundingClientRect().height : 0;
-    const top = id === 'home'
-      ? 0
-      : target.getBoundingClientRect().top + window.scrollY - headerHeight;
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    window.scrollTo({ top: Math.max(top, 0), behavior: reduceMotion ? 'auto' : 'smooth' });
-
-    // Keep keyboard / screen-reader focus in sync with where we scrolled
-    target.setAttribute('tabindex', '-1');
-    target.focus({ preventScroll: true });
+    scrollToSection(id, true);
   });
+}
+
+/* Arriving from another page via e.g. "index.html#work": the sections are
+   loaded by JS, so the browser's own jump happens before the content exists
+   and lands in the wrong place. Once everything is rendered, scroll there
+   ourselves and then drop the hash so the address bar stays clean. */
+function handleInitialHash(){
+  const hash = window.location.hash;
+  if (!hash || hash === '#') return;
+  const id = decodeURIComponent(hash.slice(1));
+  if (scrollToSection(id, false)) {
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+  }
 }
 
 initInPageNav();
@@ -441,4 +476,6 @@ initInPageNav();
   renderProjects();
   initProjectModal();
   initPersonaToggle();
+  handleInitialHash();
 })();
+
